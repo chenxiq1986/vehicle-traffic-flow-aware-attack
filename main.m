@@ -21,8 +21,7 @@ nr_traces = nr_traces';
 % obf_matrix = obfuscation_matrix(intersGPS, EPSILON, R); 
 % load('.\data\mat\spatialcorr2D.mat');
 
-for EPSILON = 1:1:10
-    EPSILON
+
     SIZE_VEHICLE_TRACE = size(vehicle_trace(vehicle_ID).data, 1); 
     time(vehicle_ID) = vehicle_trace(vehicle_ID).data(SIZE_VEHICLE_TRACE,1) - vehicle_trace(vehicle_ID).data(1,1); 
     %% Generating the obfuscation matrix
@@ -59,25 +58,3 @@ for EPSILON = 1:1:10
     tic
     esti_index = Viterbi(approx_index, real_time, transition, obf_matrix); 
     toc
-
-
-
-    esti_x = zeros(SIZE_VEHICLE_TRACE, 1);
-    esti_y = zeros(SIZE_VEHICLE_TRACE, 1);
-    for t = 1:1:SIZE_VEHICLE_TRACE
-        esti_x(t, 1) = intersGPS(esti_index(t, 1), 2);
-        esti_y(t, 1) = intersGPS(esti_index(t, 1), 3);
-    end
-    plot(esti_y, esti_x); 
-    EIE_obf(EPSILON/5) = 0;
-    EIE_est(EPSILON/5) = 0;
-    for i = 1:1:SIZE_VEHICLE_TRACE
-        EIE_obf(EPSILON/5) = sqrt((obfusc_x(i) - approx_x(i))^2 + (obfusc_y(i) - approx_y(i))^2) + EIE_obf(EPSILON/5);
-        EIE_est(EPSILON/5) = sqrt((esti_x(i) - approx_x(i))^2 + (esti_y(i) - approx_y(i))^2) + EIE_est(EPSILON/5);
-    end
-end
-
-
-
-
-
