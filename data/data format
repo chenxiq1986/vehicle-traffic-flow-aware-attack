@@ -1,0 +1,7 @@
+data format 
+
+interGPS: timestamp,latitude,longitude
+
+transMatrix: [time_range]origin_landmark;time_slot_1:hop_landmark=hop_probability|time_slot_2...
+
+粤BN14X7: timestamp,landmark,latitude,longitude
