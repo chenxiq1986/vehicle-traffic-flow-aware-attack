@@ -3,7 +3,7 @@ addpath('./func/');
 
 
 %% Parameter
-EPSILON = 100;
+EPSILON = 1;
 R = 0.01; 
 vehicle_ID = 2;
 NR_FAKE_TRAJECTORY = 100; 
