@@ -33,6 +33,7 @@ nr_traces = nr_traces';
     %% Generate the obfuscated locations based on the obfuscation matrix
     % vehicle_trace(vehicle_ID).data = vehicle_trace(vehicle_ID).data(6:20, :); 
     SIZE_VEHICLE_TRACE = size(vehicle_trace(vehicle_ID).data, 1); 
+    obfusc_index = zeros(SIZE_VEHICLE_TRACE, 1);                                % Approximated locations (index)
     obfusc_x = zeros(SIZE_VEHICLE_TRACE, 1);                                    % Obfuscated locations
     obfusc_y = zeros(SIZE_VEHICLE_TRACE, 1);
     approx_index = zeros(SIZE_VEHICLE_TRACE, 1);                                % Approximated locations (index)
@@ -51,10 +52,11 @@ nr_traces = nr_traces';
         loc_output = obfuscated_loc_gen(approx_index(i, 1), obf_matrix, intersGPS); % Genera  ting the obfuscated location 
         obfusc_x(i, 1) = loc_output(1, 1);
         obfusc_y(i, 1) = loc_output(1, 2);
+        obfusc_index(i, 1) = loc2index([obfusc_x(i, 1), approx_y(i, 1)], intersGPS); 
     end
 
 
-    %% Decoding algorithm 
-    tic
-    esti_index = Viterbi(approx_index, real_time, transition, obf_matrix); 
-    toc
+%% Decoding algorithm 
+% In this part, we use the Viterbi algorithm to estimate the vehicle's real
+% trajectory (represented by "esti_index") given 
+esti_index = Viterbi(obfusc_index, real_time, transition, obf_matrix); 
