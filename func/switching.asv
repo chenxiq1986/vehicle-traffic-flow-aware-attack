@@ -1,0 +1,16 @@
+%% This function is used to switch the current trajectory to a different trajectory if needed
+
+function new_loc = switching(fake_traj_list, last_loc)
+
+%% Parameters
+    alpha_fitness = 1.0;
+    alpha_smooth = 1.0; 
+    NR_FAKE_TRAJECTORY = size(fake_traj_list, 1); 
+    
+    weights = zeros(NR_FAKE_TRAJECTORY); 
+    for i = 1:1:NR_FAKE_TRAJECTORY
+        weights(i) = fake_traj_list(i, )
+    end
+
+end
+

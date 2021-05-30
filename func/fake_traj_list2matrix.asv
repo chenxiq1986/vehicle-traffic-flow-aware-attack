@@ -1,4 +1,4 @@
-%% Given the trajectory pool, this function is used to find the selected fake trajectory convert the fake trajectory list to a matrix
+%% This function is used to convert the fake trajectory list to a matrix
 
 function fake_traj_list_matrix = fake_traj_list2matrix(fake_traj_list)
     SIZE_VEHICLE_TRACE = size(fake_traj_list, 2); 

@@ -1,3 +1,6 @@
+% This function is used to reproduce the locations in the current round
+% given the loction in the last round
+
 function fake_traj_list_curr = reproduction(fake_traj_list, t, approx_index, transition)
 	current_location = [];
     for i = 1:1:size(fake_traj_list(t-1).location, 1)

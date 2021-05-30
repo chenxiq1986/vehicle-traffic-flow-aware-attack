@@ -16,5 +16,9 @@ function [selected_trajectory, fake_traj_list] = fake_trajectory_manager(selecte
 
     % Step 2: Selection: select the trajectories with high utilities     
     [selected_trajectory, fake_traj_list] = selection(selected_trajectory, fake_traj_list, t, approx_index, intersGPS, NR_FAKE_TRAJECTORY); 
+    
+    % Step 3: If the current trajectory cannot find the next location,
+    % switch it
+    if fake_traj_list(t).location
 end
 
